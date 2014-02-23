@@ -58,4 +58,4 @@ Sugar for fsharp({path: String});
 [travis-image]: https://secure.travis-ci.org/mollerse/node-fsharp.png?branch=master
 
 [depstat-url]: https://david-dm.org/mollerse/node-fsharp
-[depstat-image]: https://david-dm.org/mollerse/node-fsharp.png
+[depstat-image]: https://david-dm.org/mollerse/node-fsharp.png?theme=shields.io
