@@ -59,7 +59,7 @@ var Fsharp = function (param) {
     throw new Error('Path to script (*.fsx file) is required');
   }
 
-  var opts = (typeof param === 'string' ? {path: param} : param);
+  var opts = (typeof param === 'string' ? {path: param} : util._extend({}, param));
 
   opts.executable = opts.executable || locateExecutable();
 
