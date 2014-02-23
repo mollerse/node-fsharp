@@ -65,11 +65,9 @@ var Fsharp = function (param) {
 
   opts.args = opts.args || [];
 
-  opts.args.unshift(opts.path);
-
   Duplex.call(this, opts);
 
-  var fsharpi = spawnFsharpi(opts.executable, opts.args);
+  var fsharpi = spawnFsharpi(opts.executable, [opts.path].concat(opts.args));
 
   var readable = this._readable = fsharpi.stdout;
   var writable = this._writable = fsharpi.stdin;
@@ -113,7 +111,7 @@ var Fsharp = function (param) {
 
   fsharpi.on('close', function (code) {
     if (code === 0) { return; }
-    return _this.emit('error', new Error('non-zero exit code ' + code + '\n  running: ' + opts.executable + ' ' + opts.args.join(' ') + '\n\n  ' + err));
+    return _this.emit('error', new Error('non-zero exit code ' + code + '\n  running: ' + opts.executable + ' ' + [opts.path].concat(opts.args).join(' ') + '\n\n  ' + err));
   });
 };
 
