@@ -1,6 +1,6 @@
 # node-fsharp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 
-> A module for calling out to the fsharp interactive shell capturing stdin and stdout as a duplex stream
+> A module for calling out to the F# Interactive command capturing stdin and stdout as a duplex stream
 
 ## Usage
 This module creates a [Duplex](http://nodejs.org/api/stream.html#stream_class_stream_duplex) stream from the F# Interactive command. Writing to stdin and reading from stdout. Also emitting stderr if the command exits non-0.
