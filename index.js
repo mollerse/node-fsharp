@@ -50,16 +50,16 @@ var spawnFsharpi = function (executable, args) {
   return cp.spawn(executable, args);
 };
 
-var Fsharp = function (opts) {
+var Fsharp = function (param) {
   //Allow not using new
   if (!(this instanceof Fsharp)) {
-    return new Fsharp(opts);
+    return new Fsharp(param);
   }
-  if (!opts || (typeof opts !== 'string' && !opts.path)) {
+  if (!param || (typeof param !== 'string' && !param.path)) {
     throw new Error('Path to script (*.fsx file) is required');
   }
 
-  opts = (typeof opts === 'string' ? {path: opts} : opts);
+  var opts = (typeof param === 'string' ? {path: param} : param);
 
   opts.executable = opts.executable || locateExecutable();
 
