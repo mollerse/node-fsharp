@@ -29,7 +29,7 @@ Path to the script you want to execute.
 #### options.executable
 Type: `String`
 
-Default: A function that looks for `fsharpi` in your path on Linux or `fsi` on Windows. Will fall back to looking in default install directory on Windows. OSX not supported at the moment.
+Default: A function that looks for `fsharpi` in your path on Linux/Mac or `fsi` on Windows. Will fall back to looking in default install directory on Windows.
 
 The path to the F# Interactive executable.
 

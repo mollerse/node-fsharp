@@ -8,7 +8,7 @@ var Duplex = require('stream').Duplex;
 var cp = require('child_process');
 var util = require('util');
 
-var linuxExecutable = 'fsharpi';
+var nixExecutable = 'fsharpi';
 var windowsExecutable = 'fsi';
 var windowsDefaultInstallLocation = [
   process.env['PROGRAMFILES(X86)'],
@@ -24,7 +24,8 @@ var locateExecutable = function () {
   var executable;
   switch (os.type()) {
     case 'Linux':
-      executable = which(linuxExecutable);
+    case 'Darwin':
+      executable = which(nixExecutable);
       break;
     case 'Windows_NT':
       //First try to find fsi on path

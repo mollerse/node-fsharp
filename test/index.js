@@ -10,7 +10,7 @@ var os = require('os');
 var EventEmitter = require('events').EventEmitter;
 var fs = require('fs');
 
-var linuxExecutable = 'fsharpi';
+var nixExecutable = 'fsharpi';
 var windowsExecutable = 'fsi';
 var windowsDefaultInstallLocation = [
   process.env['PROGRAMFILES(X86)'],
@@ -53,7 +53,7 @@ describe('Fsharp', function () {
       });
 
       it('should set executable to fsharpi if it exists on path', function () {
-        whichStub.withArgs(linuxExecutable).returns('/usr/bin/fsharpi');
+        whichStub.withArgs(nixExecutable).returns('/usr/bin/fsharpi');
         cpMock.expects('spawn').once().withArgs('/usr/bin/fsharpi').returns(ps);
 
         new Fsharp('asdf');
@@ -63,7 +63,36 @@ describe('Fsharp', function () {
       });
 
       it('should throw error if unable to find executable', function () {
-        whichStub.withArgs(linuxExecutable).throws();
+        whichStub.withArgs(nixExecutable).throws();
+        cpMock.expects('spawn').never();
+
+        try {
+          new Fsharp('asdf');
+          expect(whichStub.calledOnce).ok;
+          expect(whichStub.threw()).ok;
+          osMock.verify();
+          cpMock.verify();
+        } catch (err) {}
+      });
+    });
+
+    describe('Mac', function () {
+      beforeEach(function () {
+        osMock.expects('type').once().returns('Darwin');
+      });
+
+      it('should set executable to fsharpi if it exists on path', function () {
+        whichStub.withArgs(nixExecutable).returns('/usr/bin/fsharpi');
+        cpMock.expects('spawn').once().withArgs('/usr/bin/fsharpi').returns(ps);
+
+        new Fsharp('asdf');
+        expect(whichStub.calledOnce).ok;
+        osMock.verify();
+        cpMock.verify();
+      });
+
+      it('should throw error if unable to find executable', function () {
+        whichStub.withArgs(nixExecutable).throws();
         cpMock.expects('spawn').never();
 
         try {
@@ -120,9 +149,10 @@ describe('Fsharp', function () {
         fsMock.restore();
       });
     });
+
     describe('other OS', function () {
       beforeEach(function () {
-        osMock.expects('type').twice().returns('Darwin');
+        osMock.expects('type').twice().returns('SunOS');
       });
 
       it('should throw error if unsupported OS', function () {
@@ -133,7 +163,7 @@ describe('Fsharp', function () {
           osMock.verify();
           cpMock.verify();
         } catch (err) {
-          expect(err.toString()).to.equal(new Error('OS not supported: Darwin').toString());
+          expect(err.toString()).to.equal(new Error('OS not supported: SunOS').toString());
         }
       });
     });
@@ -142,7 +172,7 @@ describe('Fsharp', function () {
   describe('spawn fsharpi', function () {
     beforeEach(function () {
       osMock.expects('type').returns('Linux');
-      whichStub.withArgs(linuxExecutable).returns('fsharpi');
+      whichStub.withArgs(nixExecutable).returns('fsharpi');
     });
 
     afterEach(function () {
