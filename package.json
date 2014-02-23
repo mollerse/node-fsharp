@@ -1,6 +1,6 @@
 {
   "name": "fsharp",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A module for calling out to the F# Interactive command capturing stdin and stdout as a duplex stream",
   "keywords": [
     "fsharp",
