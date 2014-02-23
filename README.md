@@ -7,6 +7,14 @@ This module creates a [Duplex](http://nodejs.org/api/stream.html#stream_class_st
 
 This module requires F# to be installed on the system to be useful. Installation guides for F# can be found at [fsharp.org](http://fsharp.org/).
 
+Example:
+```
+var fsharp = require('fsharp');
+
+var script = fsharp('./script.fsx');
+script.pipe(process.stdout);
+```
+
 ## API
 
 ### fsharp(options)
