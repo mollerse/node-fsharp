@@ -1,0 +1,40 @@
+{
+  "name": "fsharp",
+  "version": "0.1.0",
+  "description": "A module for calling out to the fsharp interactive shell capturing stdin and stdout as a duplex stream",
+  "keywords": [
+    "fsharp",
+    "f#",
+    "duplex",
+    "stream"
+  ],
+  "homepage": "https://github.com/mollerse/node-fsharp",
+  "bugs": "https://github.com/mollerse/node-fsharp/issues",
+  "author": {
+    "name": "Stian Veum Møllersen",
+    "email": "stian.moellersen@gmail.com",
+    "url": "https://github.com/mollerse"
+  },
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mollerse/node-fsharp.git"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "dependencies": {
+    "which": "~1.0.5"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "sinon": "~1.8.2",
+    "chai": "~1.9.0",
+    "require-subvert": "0.0.3"
+  },
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">=1.2.10"
+  },
+  "licenses": "MIT"
+}
